@@ -1,0 +1,49 @@
+1) Install TypeScript
+
+ sudo npm install -g typescript
+2) Otras herramientas...
+ # install nvm (node version manager)
+ curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+ # install latest node
+ nvm install node
+
+ # to make node 8 the default
+ #nvm alias default 8
+
+
+npm install --save express
+
+
+
+https://medium.com/netscape/mean-app-tutorial-with-angular-4-part-1-18691663ea96
+
+Llegado hasta la parte de Controller (no inclusive)
+
+
+
+PAra React-router y react-bootstrap acordarse instalar las @types libraries de la 
+versión correspondiente.
+
+Anda el acceso directo a localhost:3000/index.html#/login, pero no anda con el redirect..
+Tampoco está haciendo el console log del redirect, no está capturando esa ruta..
+Ahora anda...
+
+Tira error con static contextTypes...
+No anda con eso el redirect...
+
+Probablemente sea necesario pasar todo a react-router 4. Hacer eso.
+
+
+Next steps:
+- Adaptar todo a react-router 4 con todo lo que eso implica.
+- Implementar bien la redireccion.
+- Hacer ABM de usuarios.
+- Github.
+
+- Minified error exception.
+- Error que tira de Promise y Redirect.
+- React-router v4
+
+
+
