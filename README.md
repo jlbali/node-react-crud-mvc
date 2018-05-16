@@ -1,5 +1,5 @@
 # node-react-crud-skeleton
-This is a basic skeleton for a complete CRUD operation using React, MongoDB and NodeJS. There is some typescript at server level, and some "advanced" features like async/await
+This is a basic skeleton for a complete CRUD operation using React, MongoDB and NodeJS. There is some TypeScript at server level, and some "advanced" features like async/await
 
 
 # Requirements
@@ -18,18 +18,18 @@ nvm alias default 8
 
 sudo npm install -g typescript
 
-- Install MondoDB 3 at least.
+- Install MongoDB 3 at least.
 
 
 # Bash scripts
 
 - clean.sh: clean up all the node_modules and transpiled code.
 
-- install.sh: install the packages and compiles everything (typescript and webpack).
+- install.sh: install the packages and compiles everything (TypeScript and client stuff with webpack).
 
 - run.sh: the same as before but also runs the application on localhost:3000.
 
-- resetDB.sh: resets the MongoDB for this app (mongo database todoapp).
+- resetDB.sh: resets the MongoDB for this app (mongo database "todoapp").
 It is needed as a first run.
 
 
