@@ -4,17 +4,19 @@ import React, {Component} from 'react';
 import {Grid, Row, Col, Well, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 
-import {getAllUsers, removeUser} from '../../services/users';
+import {ListenerComponent} from "../../framework/mvc";
+import usersStore from '../../services/users';
 import history from "../../history";
 
 
-export default class UsersList extends Component{
+export default class UsersList extends ListenerComponent{
     
     constructor(props){
         super(props);
         this.state = {
             users: null
         };
+        usersStore.suscribe(this);
     }
 
     async componentDidMount(){
@@ -22,21 +24,23 @@ export default class UsersList extends Component{
     }
 
     async loadData(){
-        var users = await getAllUsers();
+        var users = await usersStore.getAllUsers();
         this.setState({
             users: users
         });
     }
 
+    async notify(){
+        this.loadData();
+    }
+
     render(){
         if (this.state.users){
             console.log(this.state.users);
-            //console.log("State: ", this.props.books);
             var me = this;
             const usersList = this.state.users.map(function(user){
                 var deleter = async function(){
-                    await removeUser(user._id);
-                    await me.loadData();
+                    await usersStore.removeUser(user._id);
                 }
                 return (
                         <UserRow user={user} key={user._id} deleter={deleter} />

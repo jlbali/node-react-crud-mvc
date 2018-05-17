@@ -3,8 +3,8 @@ import {Grid, Row, Col, Well, Button, FormGroup, ControlLabel, FormControl, Pane
 import {findDOMNode} from 'react-dom';
 import $ from 'jquery';
 
-import {getAllRoles} from "../../services/roles";
-import {createUser, getUser, updateUser} from "../../services/users";
+import rolesStore from "../../services/roles";
+import usersStore from "../../services/users";
 
 import history from "../../history";
 
@@ -21,7 +21,7 @@ export default class UserForm extends Component{
     }
 
     async loadRoles(){
-        var roles = await getAllRoles();
+        var roles = await rolesStore.getAllRoles();
         this.setState({
             roles: roles
         });
@@ -29,12 +29,8 @@ export default class UserForm extends Component{
 
     async loadUser(){
         if (this.state.id){
-            var user = await getUser(this.state.id);
+            var user = await usersStore.getUser(this.state.id);
             console.log("User: ", user);
-            //findDOMNode(this.refs.username).value = user.username;
-            //findDOMNode(this.refs.password).value = user.password;
-            //findDOMNode(this.refs.email).value = user.email;
-            //findDOMNode(this.refs.role).value = user.id_role;
             $("#username").val(user.username);
             $("#password").val("CLAVE");
             $("#email").val(user.email);
@@ -44,19 +40,13 @@ export default class UserForm extends Component{
 
     async componentDidMount(){
         await this.loadRoles();
-        //await this.loadUser();
     }
 
     async componentDidUpdate(){
         await this.loadUser();
     }
 
-    // Forma muy rebuscada...
     render(){
-        var username="";
-        var password="";
-        var email="";
-        var id_role = null;
         var me = this;
         var rolesOptions = this.state.roles.map(function(role){
             return (
@@ -114,9 +104,9 @@ export default class UserForm extends Component{
             id_role: findDOMNode(this.refs.role).value,
         };
         if (!this.state.id){
-            var respuesta = await createUser(item);
+            var respuesta = await usersStore.createUser(item);
         } else {
-            var respuesta = await updateUser(this.state.id, item);
+            var respuesta = await usersStore.updateUser(this.state.id, item);
         }
         
         console.log("Respuesta ", respuesta); // Tampoco llega hasta aca.
